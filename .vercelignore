@@ -1,0 +1,16 @@
+node_modules
+**/node_modules
+server/node_modules
+web/node_modules
+.git
+*.log
+cloudflared.log
+cloud-service.log
+server/data
+server/uploads
+deploy
+Dockerfile
+Dockerfile.cloud
+docker-compose.yml
+fly.toml
+electron
