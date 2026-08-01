@@ -1,0 +1,9 @@
+.vercel
+.env*
+node_modules/
+server/data/
+server/uploads/
+*.log
+cloudflared.exe
+desktop/node_modules/
+dist/
