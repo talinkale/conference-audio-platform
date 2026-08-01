@@ -1,0 +1,27 @@
+# Render Blueprint 配置文件
+# 文档: https://render.com/docs/blueprint-spec
+services:
+  # ===== PostgreSQL 数据库 =====
+  - type: postgresql
+    name: conference-audio-db
+    plan: free
+    ipAllowList: []
+
+  # ===== Web 服务（前端 + 后端） =====
+  - type: web
+    name: conference-audio-platform
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile.render
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      # Render 自动注入 DATABASE_URL，指向上面的 PostgreSQL
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: conference-audio-db
+          property: connectionString
